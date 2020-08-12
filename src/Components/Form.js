@@ -69,36 +69,13 @@ const Form = () => {
             .then(response => {
                 console.log("POST is successful!", response.data)
                 setPost(response.data)
+                setServerError(null)
                 setForm(emptyData)
             })
             .catch(err => {
-                setServerError
+                setServerError("API POST request failed!")
             })
-
-
-
     }
-
-
-//         // if successful request, clear any server errors
-//         setServerError(null); // see step 7 in notion notes
-
-//         // clear state, could also use a predetermined initial state variable here
-//         setFormState({
-//           name: "",
-//           email: "",
-//           motivation: "",
-//           positons: "",
-//           terms: true
-//         });
-//       })
-//       .catch((err) => {
-//         // this is where we could create a server error in the form! if API request fails, say for authentication (that user doesn't exist in our DB),
-//         // set serverError
-//         setServerError("oops! something happened!");
-//       });
-//   };
-
 
     return (
 
