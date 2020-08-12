@@ -26,6 +26,10 @@ const Form = () => {
     //Creating state for server error. Uses String.
     const [serverError, setServerError] = useState("")
 
+    //Creating button state to disable if input does not meet requirements/is not validated
+    const [button, setButton] = useState();
+
+
     //Creating form schema using Yup
     const formSchema = yup.object().shape({
 
@@ -137,7 +141,7 @@ const Form = () => {
                     type = "password"
                     name = "password"
                     placeholder = "Create your password"
-                    value = "form.password"
+                    value = {form.password}
                     onChange = {inputChange}
                     />
                 {errors.password.length > 0 ? <p>{errors.password}</p> : null}
@@ -149,7 +153,7 @@ const Form = () => {
                 <select
                     id = "role"
                     name = "role"
-                    value = "form.role"
+                    value = {form.role}
                     onChange = {inputChange}>
                     
                         <option> Pick a role </option>
@@ -167,8 +171,11 @@ const Form = () => {
                     id = "terms"
                     type = "checkbox"
                     name = "terms"
+                    checked = {form.terms}
+                    onChange = {inputChange}
                     />
                      I agree to the Terms and Conditions.
+                {errors.terms.length > 0 ? <p>{errors.terms}</p> : null}
 
             </label>
 
