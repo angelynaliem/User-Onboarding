@@ -27,7 +27,7 @@ const Form = () => {
     const [serverError, setServerError] = useState("")
 
     //Creating button state to disable if input does not meet requirements/is not validated
-    const [button, setButton] = useState();
+    const [button, setButton] = useState(true);
 
 
     //Creating form schema using Yup
@@ -93,18 +93,13 @@ const Form = () => {
         setForm(newData)
     }
 
-
-//   // whenever state updates, validate the entire form. if valid, then change button to be enabled.
-//   useEffect(() => {
-//     formSchema.isValid(formState).then((isValid) => {
-//       // isValid is a boolean
-//       // !true === false
-//       // !false === true
-//       // if the form is valid, and we take the opposite --> we do not want disabled btn
-//       // if the form is invalid (false) and we take the opposite (!) --> we will disable the btn
-//       setButtonDisabled(!isValid); // true means btn will be disabled
-//     });
-//   }, [formState]);
+    //If everything checks, then button is enabled
+    useEffect(() => {
+        formSchema.isValid(form)
+        .then(isValid => {
+            setButton(!isValid)
+        })
+    }, [form])
 
     return (
 
@@ -179,7 +174,7 @@ const Form = () => {
 
             </label>
 
-            <button type = "submit">
+            <button type = "submit" disabled = {button}>
                 Submit
             </button>
 
