@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import Form from './Components/Form';
+import Forms from './Components/Form';
 import UsersList from './Components/UsersList';
 
 
@@ -19,7 +19,7 @@ function App() {
   return (
     <div className="App">
       <h1>User Onboarding</h1>
-     <Form addNewUser = {addNewUser}/>
+     <Forms addNewUser = {addNewUser}/>
      <UsersList users={users} />
     </div>
   );

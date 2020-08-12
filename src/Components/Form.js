@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import * as yup from 'yup';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 
-const Form = (props) => {
+const Forms = (props) => {
 
     //Creating a state variable for DRYer code.
     const emptyData = {
@@ -104,11 +105,13 @@ const Form = (props) => {
 
     return (
 
-        <form onSubmit = {formSubmit} >
+        <Form onSubmit = {formSubmit} >
             {serverError ? <p>{serverError}</p> : null}
 
-            <label htmlFor="name">
-                <input
+            <FormGroup>
+            <Label htmlFor="name">
+                Full Name
+                <Input
                     id = "name"
                     type = "text"
                     name = "name"
@@ -117,10 +120,13 @@ const Form = (props) => {
                     onChange = {inputChange}
                     />
                 {errors.name.length > 0 ? <p>{errors.name}</p> : null}
-            </label>
+            </Label>
+            </FormGroup>
 
-            <label htmlFor="email">
-                <input 
+            <FormGroup>
+            <Label htmlFor="email">
+                Email
+                <Input 
                     id = "email"
                     type = "email"
                     name = "email"
@@ -129,10 +135,13 @@ const Form = (props) => {
                     onChange = {inputChange}
                     />
                 {errors.email.length > 0 ? <p>{errors.email}</p> : null}
-            </label>
+            </Label>
+            </FormGroup>
 
-            <label htmlFor = "password">
-                <input
+            <FormGroup>
+            <Label htmlFor = "password">
+                Password
+                <Input
                     id = "password"
                     type = "password"
                     name = "password"
@@ -142,10 +151,12 @@ const Form = (props) => {
                     />
                 {errors.password.length > 0 ? <p>{errors.password}</p> : null}
 
-            </label>
+            </Label>
+            </FormGroup>
 
-            <label htmlFor = "role">
-                What is your role?
+            <FormGroup>
+            <Label htmlFor = "role">
+                What is your role? 
                 <select
                     id = "role"
                     name = "role"
@@ -160,10 +171,12 @@ const Form = (props) => {
 
                     </select>
                 {errors.role.length > 0 ? <p>{errors.role}</p> : null}
-            </label>
+            </Label>
+            </FormGroup>
 
-            <label htmlFor = "terms">
-                <input
+            <FormGroup>
+            <Label htmlFor = "terms">
+                <Input
                     id = "terms"
                     type = "checkbox"
                     name = "terms"
@@ -173,19 +186,21 @@ const Form = (props) => {
                      I agree to the Terms and Conditions.
                 {errors.terms.length > 0 ? <p>{errors.terms}</p> : null}
 
-            </label>
+            </Label>
+            </FormGroup>
 
-            <button type = "submit" disabled = {button}>
+
+            <Button type = "submit" disabled = {button}>
                 Submit
-            </button>
+            </Button>
 
             {/* To display POST data on the DOM */}
             {/* <pre>{JSON.stringify(post, null, 2)}</pre>  */}
 
-        </form>
+        </Form>
       
     );
 }
 
 
-export default Form;
+export default Forms;
