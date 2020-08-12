@@ -20,6 +20,11 @@ const Form = () => {
     //Creating initial state for errors. Uses String to state errors.
     const [errors, setErrors] = useState(emptyData)
 
+    //Creating temporary state to display API POST response on the DOM.
+    const [post, setPost] = useState([])
+
+    //Creating state for server error. Uses String.
+    const [serverError, setServerError] = useState("")
 
     //Creating form schema using Yup
     const formSchema = yup.object().shape({
@@ -61,26 +66,19 @@ const Form = () => {
 
         axios
             .post("https://reqres.in/api/users", form)
+            .then(response => {
+                console.log("POST is successful!", response.data)
+                setPost(response.data)
+                setForm(emptyData)
+            })
+            .catch(err => {
+                setServerError
+            })
 
 
 
     }
 
-
-
-//      // onSubmit function
-//   const formSubmit = (e) => {
-//     e.preventDefault(); // <form> onSubmit has default behavior from HTML!
-//     console.log("form submitted!");
-
-//     // send out POST request with obj as second param, for us that is formState.
-//     // trigger .catch by changing URL to "https://reqres.in/api/register" -> see step 7 in notion notes
-//     axios
-//       .post("https://reqres.in/api/users", formState)
-//       .then((res) => {
-//         console.log("success!", res.data);
-//         // update temp state with value from API to display in <pre>
-//         setPost(res.data);
 
 //         // if successful request, clear any server errors
 //         setServerError(null); // see step 7 in notion notes
