@@ -7,6 +7,20 @@ import * as yup from 'yup';
 
 const Form = () => {
 
+
+
+    //Creating state for errors. Uses String to state errors.
+    const emptyData = {
+        name: "",
+        email: "",
+        password: "",
+        role: "",
+        terms: ""
+    }
+
+    const [errors, setErrors] = useState(emptyData)
+
+
     //Creating form schema using Yup
     const formSchema = yup.object().shape({
 
@@ -22,39 +36,24 @@ const Form = () => {
     const validateChange = (e) => {
 
         yup
-        .reach()
-
-
-
+        .reach(formSchema, e.target.name)
+        .validate(e.target.name === "terms" ? e.target.checked : e.target.value)
+        .then(valid => {
+            setErrors({
+                ...errors,
+                [e.target.name]: ""
+            })
+            
+        })
+        .catch(err => {
+            console.log(err)
+            setErrors({
+                ...errors,
+                [e.target.name] : err.errors[0]
+            })
+        })
     }
 
-
-
-
-//      // inline validation, validating one key/value pair at a time
-//   const validateChange = (e) => {
-//     // get the rules out of schema with reach at key "e.target.name" --> "formSchema[e.target.name]"
-
-//     yup
-//       .reach(formSchema, e.target.name)
-//       .validate(e.target.name === "terms" ? e.target.checked : e.target.value) // compare with real value. does it break the rule?
-//       .then((valid) => {
-//         // if valid param is true, then erase any errors in error state at that key/value in errors
-//         setErrors({
-//           ...errors,
-//           [e.target.name]: ""
-//         });
-//       })
-//       .catch((err) => {
-//         console.log(err);
-
-//         // if failing validation, set error in state
-//         setErrors({
-//           ...errors,
-//           [e.target.name]: err.errors[0]
-//         });
-//       });
-//   };
 
     return (
 
