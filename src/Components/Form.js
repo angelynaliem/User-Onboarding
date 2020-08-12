@@ -3,7 +3,7 @@ import axios from 'axios';
 import * as yup from 'yup';
 
 
-const Form = () => {
+const Form = (props) => {
 
     //Creating a state variable for DRYer code.
     const emptyData = {
@@ -79,6 +79,7 @@ const Form = () => {
             .catch(err => {
                 setServerError("API POST request failed!")
             })
+        props.addNewUser(form); 
     }
 
     //Creating onChange function to hook up state with new input 
@@ -179,7 +180,7 @@ const Form = () => {
             </button>
 
             {/* To display POST data on the DOM */}
-            <pre>{JSON.stringify(post, null, 2)}</pre> 
+            {/* <pre>{JSON.stringify(post, null, 2)}</pre>  */}
 
         </form>
       
