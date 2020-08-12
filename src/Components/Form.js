@@ -104,7 +104,8 @@ const Form = () => {
 
     return (
 
-        <form >
+        <form onSubmit = {formSubmit} >
+            {serverError ? <p>{serverError}</p> : null}
 
             <label htmlFor="name">
                 <input
@@ -112,7 +113,10 @@ const Form = () => {
                     type = "text"
                     name = "name"
                     placeholder = "Your full name goes here"
+                    value = {form.name}
+                    onChange = {inputChange}
                     />
+                {errors.name.length > 0 ? <p>{errors.name}</p> : null}
             </label>
 
             <label htmlFor="email">
@@ -121,7 +125,10 @@ const Form = () => {
                     type = "email"
                     name = "email"
                     placeholder = "Your email address goes here"
+                    value = {form.email}
+                    onChange = {inputChange}
                     />
+                {errors.email.length > 0 ? <p>{errors.email}</p> : null}
             </label>
 
             <label htmlFor = "password">
@@ -130,7 +137,10 @@ const Form = () => {
                     type = "password"
                     name = "password"
                     placeholder = "Create your password"
+                    value = "form.password"
+                    onChange = {inputChange}
                     />
+                {errors.password.length > 0 ? <p>{errors.password}</p> : null}
 
             </label>
 
@@ -138,7 +148,10 @@ const Form = () => {
                 What is your role?
                 <select
                     id = "role"
-                    name = "role">
+                    name = "role"
+                    value = "form.role"
+                    onChange = {inputChange}>
+                    
                         <option> Pick a role </option>
                         <option value = "Full Stack Web Developer">Full Stack Web Developer</option>
                         <option value = "Data Scientist">Data Scientist</option>
@@ -146,6 +159,7 @@ const Form = () => {
                         <option value = "Mobile Developer">Mobile Developer</option>
 
                     </select>
+                {errors.role.length > 0 ? <p>{errors.role}</p> : null}
             </label>
 
             <label htmlFor = "terms">
@@ -161,6 +175,9 @@ const Form = () => {
             <button type = "submit">
                 Submit
             </button>
+
+            {/* To display POST data on the DOM */}
+            <pre>{JSON.stringify(post, null, 2)}</pre> 
 
         </form>
       
