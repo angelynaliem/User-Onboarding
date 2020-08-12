@@ -3,13 +3,9 @@ import axios from 'axios';
 import * as yup from 'yup';
 
 
-
-
 const Form = () => {
 
-
-
-    //Creating state for errors. Uses String to state errors.
+    //Creating a state variable for DRYer code.
     const emptyData = {
         name: "",
         email: "",
@@ -18,6 +14,10 @@ const Form = () => {
         terms: ""
     }
 
+    //Creating initial state for forms. 
+    const [form, setForm] = useState(emptyData)
+
+    //Creating initial state for errors. Uses String to state errors.
     const [errors, setErrors] = useState(emptyData)
 
 
@@ -53,6 +53,53 @@ const Form = () => {
             })
         })
     }
+
+    //Creating POST request using Axios when form is submitted using formSubmit function
+    const formSubmit = (e) => {
+        e.preventDefault();
+        console.log("Form submitted!")
+
+        axios
+            .post("https://reqres.in/api/users", form)
+
+
+
+    }
+
+
+
+//      // onSubmit function
+//   const formSubmit = (e) => {
+//     e.preventDefault(); // <form> onSubmit has default behavior from HTML!
+//     console.log("form submitted!");
+
+//     // send out POST request with obj as second param, for us that is formState.
+//     // trigger .catch by changing URL to "https://reqres.in/api/register" -> see step 7 in notion notes
+//     axios
+//       .post("https://reqres.in/api/users", formState)
+//       .then((res) => {
+//         console.log("success!", res.data);
+//         // update temp state with value from API to display in <pre>
+//         setPost(res.data);
+
+//         // if successful request, clear any server errors
+//         setServerError(null); // see step 7 in notion notes
+
+//         // clear state, could also use a predetermined initial state variable here
+//         setFormState({
+//           name: "",
+//           email: "",
+//           motivation: "",
+//           positons: "",
+//           terms: true
+//         });
+//       })
+//       .catch((err) => {
+//         // this is where we could create a server error in the form! if API request fails, say for authentication (that user doesn't exist in our DB),
+//         // set serverError
+//         setServerError("oops! something happened!");
+//       });
+//   };
 
 
     return (
