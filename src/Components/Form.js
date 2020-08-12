@@ -103,6 +103,10 @@ const Forms = (props) => {
         })
     }, [form])
 
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+
+    const toggle = () => setDropdownOpen(prevState => !prevState);
+
     return (
 
         <Form onSubmit = {formSubmit} >
@@ -162,15 +166,14 @@ const Forms = (props) => {
                     name = "role"
                     value = {form.role}
                     onChange = {inputChange}>
-                    
-                        <option> Pick a role </option>
+                         <option>Pick a role</option>
                         <option value = "Full Stack Web Developer">Full Stack Web Developer</option>
                         <option value = "Data Scientist">Data Scientist</option>
                         <option value = "Web Designer">Web Designer</option>
                         <option value = "Mobile Developer">Mobile Developer</option>
-
-                    </select>
+                        </select>
                 {errors.role.length > 0 ? <p>{errors.role}</p> : null}
+            
             </Label>
             </FormGroup>
 
