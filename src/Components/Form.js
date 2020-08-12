@@ -77,6 +77,31 @@ const Form = () => {
             })
     }
 
+    //Creating onChange function to hook up state with new input 
+    const inputChange = (e) => {
+        e.persist()
+        console.log("new input here!", e.target.value)
+        const newData = {
+            ...form,
+            [e.target.name] : e.target.type === "checkbox" ? e.target.checked : e.target.value
+        }
+        validateChange(e)
+        setForm(newData)
+    }
+
+
+//   // whenever state updates, validate the entire form. if valid, then change button to be enabled.
+//   useEffect(() => {
+//     formSchema.isValid(formState).then((isValid) => {
+//       // isValid is a boolean
+//       // !true === false
+//       // !false === true
+//       // if the form is valid, and we take the opposite --> we do not want disabled btn
+//       // if the form is invalid (false) and we take the opposite (!) --> we will disable the btn
+//       setButtonDisabled(!isValid); // true means btn will be disabled
+//     });
+//   }, [formState]);
+
     return (
 
         <form >
