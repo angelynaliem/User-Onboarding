@@ -24,6 +24,9 @@ describe("Testing form inputs", () => {
         .should("have.value", "Full Stack Web Developer");
   
       cy.get("[data-cy=terms]").check().should("be.checked"); // checks a type="checkbox" input
+
+    //   cy.get("[data-cy=name]").should('have.value', true);
+        cy.get('input').should('not.have.value', '')
   
       cy.get("[data-cy=submit]").click();
       cy.screenshot("my-name-of-image"); // takes a screenshot at this point in time where the position has been selected by the checkbox has not been checked
