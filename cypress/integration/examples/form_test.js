@@ -10,10 +10,14 @@ describe("Testing form inputs", () => {
     it("adding text to inputs and submits the form", () => {
       // make sure you add the data-cy attribute to your actual code that you're testing!
       cy.get("[data-cy=name]").type("Angelyn Liem").should("have.value", "Angelyn Liem");
+  
       // create test for email
       cy.get("[data-cy=email]")
         .type("angelynaliem@gmail.com")
         .should("have.value", "angelynaliem@gmail.com");
+
+        //Uncomment line below to see form validation at work
+        // cy.get("[data-cy=email]").clear(); 
   
       cy.get("[data-cy=password]")
         .type("123456")
@@ -25,10 +29,10 @@ describe("Testing form inputs", () => {
   
       cy.get("[data-cy=terms]").check().should("be.checked"); // checks a type="checkbox" input
 
-    //   cy.get("[data-cy=name]").should('have.value', true);
-        cy.get('input').should('not.have.value', '')
+    //   cy.get("[data-cy=email]").should('have.value', '');
+        // cy.get("[data-cy=name]").should('not.have.value', '')
   
-      cy.get("[data-cy=submit]").click();
+    //   cy.get("[data-cy=submit]").click();
       cy.screenshot("my-name-of-image"); // takes a screenshot at this point in time where the position has been selected by the checkbox has not been checked
     });
   });
