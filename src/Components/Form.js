@@ -119,6 +119,7 @@ const Forms = (props) => {
                     id = "name"
                     type = "text"
                     name = "name"
+                    data-cy = "name"
                     placeholder = "Your full name goes here"
                     value = {form.name}
                     onChange = {inputChange}
@@ -134,6 +135,7 @@ const Forms = (props) => {
                     id = "email"
                     type = "email"
                     name = "email"
+                    data-cy = "email"
                     placeholder = "Your email address goes here"
                     value = {form.email}
                     onChange = {inputChange}
@@ -149,6 +151,7 @@ const Forms = (props) => {
                     id = "password"
                     type = "password"
                     name = "password"
+                    data-cy = "password"
                     placeholder = "Create your password"
                     value = {form.password}
                     onChange = {inputChange}
@@ -164,9 +167,10 @@ const Forms = (props) => {
                 <select
                     id = "role"
                     name = "role"
+                    data-cy = "role"
                     value = {form.role}
                     onChange = {inputChange}>
-                         <option>Pick a role</option>
+                        <option>Pick a role</option>
                         <option value = "Full Stack Web Developer">Full Stack Web Developer</option>
                         <option value = "Data Scientist">Data Scientist</option>
                         <option value = "Web Designer">Web Designer</option>
@@ -183,6 +187,7 @@ const Forms = (props) => {
                     id = "terms"
                     type = "checkbox"
                     name = "terms"
+                    data-cy = "terms"
                     checked = {form.terms}
                     onChange = {inputChange}
                     />
@@ -193,7 +198,7 @@ const Forms = (props) => {
             </FormGroup>
 
 
-            <Button type = "submit" disabled = {button}>
+            <Button type = "submit" data-cy = "submit" disabled = {button}>
                 Submit
             </Button>
 
